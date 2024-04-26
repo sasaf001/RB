@@ -1,43 +1,9 @@
-{
-    "routes": [
-      {
-        "route": "/*",
-        "allowedRoles": ["authenticated"]
-      }
-    ],
-    "responseOverrides": {
-      "401": {
-        "statusCode": 302,
-        "redirect": "/.auth/login/myProvider"
-      }
-    },
+<!DOCTYPE html>
+<html>
+<body>
 
-    "mimeTypes": {
-      ".json": "text/json",
-      ".css": "text/css",
-      ".js": "text/javascript"
-    },
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
 
-    "auth": {
-      "identityProviders": {
-        "customOpenIdConnectProviders": {
-          "myProvider": {
-            "registration": {
-              "clientIdSettingName": "OKTA_ID",
-              "clientCredential": {
-                "clientSecretSettingName": "OKTA_SECRET"
-              },
-              "openIdConnectConfiguration": {
-                "wellKnownOpenIdConfiguration": "https://spark-d.redbull.com/.well-known/openid-configuration"
-              }
-            },
-            "login": {
-              "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-              "scopes": ["openid","groups","profile"],
-              "loginParameterNames": []
-            }
-          }
-        }
-      }
-    }
-  }
+</body>
+</html>
