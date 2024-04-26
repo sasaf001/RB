@@ -1,0 +1,14 @@
+{
+    "globalHeaders": {
+        "content-security-policy": "default-src 'self'"
+    },
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
+    },
+    "platform": {
+        "apiRuntime": "node|21",
+        "appArtifactLocation": "build/"
+    }
+  }
+  

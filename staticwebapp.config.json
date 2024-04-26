@@ -8,7 +8,7 @@
     "responseOverrides": {
       "401": {
         "statusCode": 302,
-        "redirect": "/.auth/login/myProvider"
+        "redirect": "/.auth/login/okta"
       }
     },
 
@@ -21,7 +21,7 @@
     "auth": {
       "identityProviders": {
         "customOpenIdConnectProviders": {
-          "myProvider": {
+          "okta": {
             "registration": {
               "clientIdSettingName": "OKTA_ID",
               "clientCredential": {
