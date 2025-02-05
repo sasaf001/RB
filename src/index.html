@@ -7,57 +7,61 @@
 </head>
 <body>
     <h2>Benutzerregistrierung</h2>
-    <form>
+    <form id="userForm">
         <label for="login">Login:</label>
-        <input type="text" id="login" name="login"><br><br>
+        <input type="email" id="login" name="login" required><br><br>
         
-        <label for="firstName">Vorname:</label>
-        <input type="text" id="firstName" name="firstName"><br><br>
+        <!-- Andere Felder hier... -->
         
-        <label for="lastName">Nachname:</label>
-        <input type="text" id="lastName" name="lastName"><br><br>
-        
-        <label for="middleName">Zweiter Vorname:</label>
-        <input type="text" id="middleName" name="middleName"><br><br>
-        
-        <label for="honorificPrefix">Anrede (Prefix):</label>
-        <input type="text" id="honorificPrefix" name="honorificPrefix"><br><br>
-        
-        <label for="honorificSuffix">Titel (Suffix):</label>
-        <input type="text" id="honorificSuffix" name="honorificSuffix"><br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-        
-        <label for="title">Titel:</label>
-        <input type="text" id="title" name="title"><br><br>
-        
-        <label for="displayName">Anzeigename:</label>
-        <input type="text" id="displayName" name="displayName"><br><br>
-        
-        <label for="nickName">Spitzname:</label>
-        <input type="text" id="nickName" name="nickName"><br><br>
-        
-        <label for="profileUrl">Profil-URL:</label>
-        <input type="text" id="profileUrl" name="profileUrl"><br><br>
-        
-        <label for="secondEmail">Zweit-Email:</label>
-        <input type="email" id="secondEmail" name="secondEmail"><br><br>
-        
-        <label for="mobilePhone">Handynummer:</label>
-        <input type="tel" id="mobilePhone" name="mobilePhone"><br><br>
-        
-        <label for="primaryPhone">Primäre Telefonnummer:</label>
-        <input type="tel" id="primaryPhone" name="primaryPhone"><br><br>
-        
-        <label for="streetAddress">Straße:</label>
-        <input type="text" id="streetAddress" name="streetAddress"><br><br>
-        
-        <label for="city">Stadt:</label>
-        <input type="text" id="city" name="city"><br><br>
-        
-        <label for="state">Bundesland:</label>
-        <input type="text" id="state" name="state"><br><br>
-        
-        <label for="zipCode">Postleitzahl:</label>
-        <input type="text" id="zipCode
+        <input type="button" value="Abrufen" onclick="fetchUserData()">
+        <input type="button" value="Aktualisieren" onclick="updateUserData()">
+    </form>
+
+    <script>
+        async function fetchUserData() {
+            const login = document.getElementById('login').value;
+            const response = await fetch(`https://YOUR_OKTA_DOMAIN.com/api/v1/users/${login}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'SSWS YOUR_API_TOKEN',
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const userData = await response.json();
+                // Fülle die anderen Felder mit den Benutzerdaten
+                // Beispiel: document.getElementById('firstName').value = userData.profile.firstName;
+            } else {
+                alert('Fehler beim Abrufen der Benutzerdaten.');
+            }
+        }
+
+        async function updateUserData() {
+            const login = document.getElementById('login').value;
+            const userData = {
+                profile: {
+                    // Fülle die Benutzerdaten von den Formularfeldern
+                    // Beispiel: firstName: document.getElementById('firstName').value
+                }
+            };
+
+            const response = await fetch(`https://YOUR_OKTA_DOMAIN.com/api/v1/users/${login}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'SSWS YOUR_API_TOKEN',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                alert('Benutzerdaten erfolgreich aktualisiert.');
+            } else {
+                alert('Fehler beim Aktualisieren der Benutzerdaten.');
+            }
+        }
+    </script>
+</body>
+</html>
