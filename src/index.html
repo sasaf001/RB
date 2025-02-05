@@ -151,7 +151,8 @@
                     headers: {
                         'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'X-HTTP-Method-Override': 'PUT' // ⬅️ Dies ist wichtig!
                     },
                     body: JSON.stringify(userData)
                 });
