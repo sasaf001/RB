@@ -17,6 +17,49 @@
         <label for="lastName">Nachname:</label>
         <input type="text" id="lastName" name="lastName"><br><br>
 
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        
+        <label for="secondEmail">Zweit-Email:</label>
+        <input type="email" id="secondEmail" name="secondEmail"><br><br>
+        
+        <label for="mobilePhone">Handynummer:</label>
+        <input type="tel" id="mobilePhone" name="mobilePhone"><br><br>
+        
+        <label for="streetAddress">Straße:</label>
+        <input type="text" id="streetAddress" name="streetAddress"><br><br>
+        
+        <label for="city">Stadt:</label>
+        <input type="text" id="city" name="city"><br><br>
+        
+        <label for="state">Bundesland:</label>
+        <input type="text" id="state" name="state"><br><br>
+        
+        <label for="zipCode">Postleitzahl:</label>
+        <input type="text" id="zipCode" name="zipCode"><br><br>
+        
+        <label for="countryCode">Ländercode:</label>
+        <input type="text" id="countryCode" name="countryCode"><br><br>
+        
+        
+        <label for="employeeNumber">Mitarbeiternummer:</label>
+        <input type="text" id="employeeNumber" name="employeeNumber"><br><br>
+        
+        <label for="costCenter">Kostenstelle:</label>
+        <input type="text" id="costCenter" name="costCenter"><br><br>
+        
+        <label for="organization">Organisation:</label>
+        <input type="text" id="organization" name="organization"><br><br>
+        
+        
+        <label for="department">Fachbereich:</label>
+        <input type="text" id="department" name="department"><br><br>
+        
+        
+        <label for="employeStatus">Mitarbeiterstatus:</label>
+        <input type="text" id="employeStatus" name="employeStatus"><br><br>
+        
+
         <input type="button" value="Abrufen" onclick="fetchUserData()">
         <input type="button" value="Aktualisieren" onclick="updateUserData()">
     </form>
@@ -48,6 +91,20 @@
                     if (userData.profile) {
                         document.getElementById('firstName').value = userData.profile.firstName || "";
                         document.getElementById('lastName').value = userData.profile.lastName || "";
+                        document.getElementById('email').value = userData.profile.email || "";
+                        document.getElementById('secondEmail').value = userData.profile.secondEmail || "";
+                        document.getElementById('mobilePhone').value = userData.profile.mobilePhone || "";
+                        document.getElementById('streetAddress').value = userData.profile.streetAddress || "";
+                        document.getElementById('city').value = userData.profile.city || "";
+                        document.getElementById('state').value = userData.profile.state || "";
+                        document.getElementById('zipCode').value = userData.profile.zipCode || "";
+                        document.getElementById('countryCode').value = userData.profile.countryCode || "";
+                        document.getElementById('employeeNumber').value = userData.profile.employeeNumber || "";
+                        document.getElementById('costCenter').value = userData.profile.costCenter || "";
+                        document.getElementById('organization').value = userData.profile.organization || "";
+                        document.getElementById('department').value = userData.profile.department || "";
+                        document.getElementById('employeStatus').value = userData.profile.employeStatus || "";
+                    
                     }
                 } else {
                     console.error("Fehler beim Abrufen:", response.status, await response.text());
