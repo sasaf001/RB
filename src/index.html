@@ -116,14 +116,14 @@
                 method: 'GET',
                 headers: {
                     'Authorization': '00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
-                    'Accept': 'application/json'
+                    //'Accept': 'application/json'
                 }
             });
 
             if (response.ok) {
                 const userData = await response.json();
                 // Fülle die anderen Felder mit den Benutzerdaten
-                // Beispiel: document.getElementById('firstName').value = userData.profile.firstName;
+                 document.getElementById('firstName').value = userData.profile.firstName;
             } else {
                 alert('Fehler beim Abrufen der Benutzerdaten.');
             }
