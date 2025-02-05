@@ -147,12 +147,12 @@
 
             try {
                 const response = await fetch(`https://demo-green-puma-81717.okta.com/api/v1/users/${encodedLogin}`, {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'X-HTTP-Method-Override': 'PUT' // ⬅️ Dies ist wichtig!
+                        //'X-HTTP-Method-Override': 'PUT' // ⬅️ Dies ist wichtig!
                     },
                     body: JSON.stringify(userData)
                 });
