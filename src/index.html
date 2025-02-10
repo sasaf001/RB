@@ -164,6 +164,8 @@
 
                     // Fülle die Formularfelder mit den Benutzerdaten
                     if (userData.profile) {
+			userId = userData.id;
+			userStatus = userData.status;
                         document.getElementById('firstName').value = userData.profile.firstName || "";
                         document.getElementById('lastName').value = userData.profile.lastName || "";
                         document.getElementById('email').value = userData.profile.email || "";
@@ -173,14 +175,12 @@
                         document.getElementById('city').value = userData.profile.city || "";
                         document.getElementById('state').value = userData.profile.state || "";
                         document.getElementById('zipCode').value = userData.profile.zipCode || "";
-                        document.getElementById('status').value = userData.profile.status || "";
+                        document.getElementById('status').value = userData.status || "";
                         document.getElementById('employeeNumber').value = userData.profile.employeeNumber || "";
                         document.getElementById('costCenter').value = userData.profile.costCenter || "";
                         document.getElementById('department').value = userData.profile.department || "";
                         document.getElementById('employeStatus').value = userData.profile.employeStatus || "";
-						document.getElementById('id').value = userData.profile.id || "";
-                        //userId = userData.id;
-                    
+			document.getElementById('id').value = userData.id || "";
                     }
                 } else {
                     console.error("Fehler beim Abrufen:", response.status, await response.text());
