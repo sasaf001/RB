@@ -9,25 +9,21 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
             margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 50%;
-            position: relative;
+            padding: 0;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #ddd;
+            width: 60%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
         h2 {
             flex-grow: 1;
@@ -37,8 +33,16 @@
             margin: 0;
         }
         .logo {
-            width: 50px;
+            width: 60px;
             height: auto;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin-top: 20px;
         }
         form {
             display: flex;
@@ -69,13 +73,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header mit Titel und Logo -->
-        <div class="header">
-            <h2>Welcome to HR-Test-App</h2>
-            <img src="https://myfristsorage.blob.core.windows.net/terraform/Logo%20ZBG.jpg" alt="Company Logo" class="logo">
-        </div>
+    <!-- Header mit Logo und Titel -->
+    <div class="header">
+        <h2>Welcome to HR-Test-App</h2>
+        <img src="https://myfristsorage.blob.core.windows.net/terraform/Logo%20ZBG.jpg" alt="Company Logo" class="logo">
+    </div>
 
+    <!-- Formular-Container -->
+    <div class="container">
         <form id="userForm">
             <label for="userId">User ID:</label>
             <input type="text" id="userId" name="userId" disabled>
