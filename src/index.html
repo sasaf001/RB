@@ -20,7 +20,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 50%;
-			position: relative;
+	    position: relative;
         }
         h2 {
             text-align: center;
@@ -67,7 +67,7 @@
 		<img src="https://myfristsorage.blob.core.windows.net/terraform/Logo ZBG.jpg" alt="Company Logo" class="logo">
         <h2>Welcome to HR-Test-App</h2>
         <form id="userForm">
-			<label for="userId">User ID:</label>
+	    <label for="userId">User ID:</label>
             <input type="text" id="userId" name="userId" disabled>
 			
             <label for="login">Login:</label>
@@ -120,7 +120,7 @@
             
             <input type="button" value="Benutzer anlegen" onclick="createUser()">
             <input type="button" value="Felder leeren" onclick="clearForm()">
-			<input type="button" value="Benutzerdaten abrufen" onclick="fetchUserData()">
+	    <input type="button" value="Benutzerdaten abrufen" onclick="fetchUserData()">
             <input type="button" value="Benutzerdaten aktualisieren" onclick="updateUserData()">
 			
         </form>
@@ -135,7 +135,7 @@
                 return;
             }
 
-           // const encodedLogin = encodeURIComponent(login);
+            const encodedLogin = encodeURIComponent(login);
             
 
             try {
