@@ -164,8 +164,6 @@
 
                     // Fülle die Formularfelder mit den Benutzerdaten
                     if (userData.profile) {
-			userId = userData.id;
-			userStatus = userData.status;
                         document.getElementById('firstName').value = userData.profile.firstName || "";
                         document.getElementById('lastName').value = userData.profile.lastName || "";
                         document.getElementById('email').value = userData.profile.email || "";
@@ -214,7 +212,7 @@
             city: document.getElementById('city').value.trim(),
             state: document.getElementById('state').value.trim(),
             zipCode: document.getElementById('zipCode').value.trim(),
-            countryCode: document.getElementById('countryCode').value.trim(),
+            status: document.getElementById('status').value.trim(),
             employeeNumber: document.getElementById('employeeNumber').value.trim(),
             costCenter: document.getElementById('costCenter').value.trim(),
             department: document.getElementById('department').value.trim(),
@@ -257,7 +255,7 @@
             city: document.getElementById('city').value.trim(),
             state: document.getElementById('state').value.trim(),
             zipCode: document.getElementById('zipCode').value.trim(),
-            countryCode: document.getElementById('countryCode').value.trim(),
+            status: document.getElementById('countryCode').value.trim(),
             employeeNumber: document.getElementById('employeeNumber').value.trim(),
             costCenter: document.getElementById('costCenter').value.trim(),
             department: document.getElementById('department').value.trim(),
