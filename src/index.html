@@ -4,65 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to HR-Test-App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            margin-top: 15px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome to HR-Test-App</h2>
-    <form id="userForm">
-        <label for="login">Login:</label>
-        <input type="email" id="login" name="login" required><br><br>
-        
-        <label for="firstName">Vorname:</label>
-        <input type="text" id="firstName" name="firstName"><br><br>
-        
-        <label for="lastName">Nachname:</label>
-        <input type="text" id="lastName" name="lastName"><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-        
-        <label for="secondEmail">Zweit-Email:</label>
-        <input type="email" id="secondEmail" name="secondEmail"><br><br>
-        
-        <label for="mobilePhone">Handynummer:</label>
-        <input type="tel" id="mobilePhone" name="mobilePhone"><br><br>
-        
-        <label for="streetAddress">Straße:</label>
-        <input type="text" id="streetAddress" name="streetAddress"><br><br>
-        
-        <label for="city">Stadt:</label>
-        <input type="text" id="city" name="city"><br><br>
-        
-        <label for="state">Bundesland:</label>
-        <input type="text" id="state" name="state"><br><br>
-        
-        <label for="zipCode">Postleitzahl:</label>
-        <input type="text" id="zipCode" name="zipCode"><br><br>
-        
-        <label for="countryCode">Ländercode:</label>
-        <input type="text" id="countryCode" name="countryCode"><br><br>
-        
-        
-        <label for="employeeNumber">Mitarbeiternummer:</label>
-        <input type="text" id="employeeNumber" name="employeeNumber"><br><br>
-        
-        <label for="costCenter">Kostenstelle:</label>
-        <input type="text" id="costCenter" name="costCenter"><br><br>
-        
-        <label for="organization">Organisation:</label>
-        <input type="text" id="organization" name="organization"><br><br>
-        
-        
-        <label for="department">Fachbereich:</label>
-        <input type="text" id="department" name="department"><br><br>
-        
-        
-        <label for="employeStatus">Mitarbeiterstatus:</label>
-        <input type="text" id="employeStatus" name="employeStatus"><br><br>
-        
-
-        <input type="button" value="Abrufen" onclick="fetchUserData()">
-        <input type="button" value="Aktualisieren" onclick="updateUserData()">
-    </form>
+    <div class="container">
+        <h2>Welcome to HR-Test-App</h2>
+        <form id="userForm">
+            <label for="login">Login:</label>
+            <input type="email" id="login" name="login" required>
+            
+            <label for="firstName">Vorname:</label>
+            <input type="text" id="firstName" name="firstName">
+            
+            <label for="lastName">Nachname:</label>
+            <input type="text" id="lastName" name="lastName">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            
+            <label for="secondEmail">Zweit-Email:</label>
+            <input type="email" id="secondEmail" name="secondEmail">
+            
+            <label for="mobilePhone">Handynummer:</label>
+            <input type="tel" id="mobilePhone" name="mobilePhone">
+            
+            <label for="streetAddress">Straße:</label>
+            <input type="text" id="streetAddress" name="streetAddress">
+            
+            <label for="city">Stadt:</label>
+            <input type="text" id="city" name="city">
+            
+            <label for="state">Bundesland:</label>
+            <input type="text" id="state" name="state">
+            
+            <label for="zipCode">Postleitzahl:</label>
+            <input type="text" id="zipCode" name="zipCode">
+            
+            <label for="countryCode">Ländercode:</label>
+            <input type="text" id="countryCode" name="countryCode">
+            
+            <label for="employeeNumber">Mitarbeiternummer:</label>
+            <input type="text" id="employeeNumber" name="employeeNumber">
+            
+            <label for="costCenter">Kostenstelle:</label>
+            <input type="text" id="costCenter" name="costCenter">
+            
+            <label for="organization">Organisation:</label>
+            <input type="text" id="organization" name="organization">
+            
+            <label for="department">Fachbereich:</label>
+            <input type="text" id="department" name="department">
+            
+            <label for="employeStatus">Mitarbeiterstatus:</label>
+            <input type="text" id="employeStatus" name="employeStatus">
+            
+            <input type="button" value="Abrufen" onclick="fetchUserData()">
+            <input type="button" value="Aktualisieren" onclick="updateUserData()">
+        </form>
+    </div>
 
     <script>
         let userId = "";
