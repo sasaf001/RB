@@ -15,13 +15,9 @@
             margin: 0;
         }
         .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 50%;
-			position: relative;
-        }
+    background: rgba(255, 255, 255, 0.9);
+}
+
         h2 {
             text-align: center;
             color: #333;
@@ -54,12 +50,12 @@
             background-color: #218838;
         }
 		.logo {
-            position: absolute;
-            top: 10px;
-	    //down:10px;
-            right: 10px;
-            width: 50px;
-        }
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    z-index: 10;
+}
     </style>
 </head>
 <body>
@@ -235,12 +231,22 @@
         }
 		async function createUser() {
             const userData = {
-                profile: {
+                   profile: {
                     firstName: document.getElementById('firstName').value.trim(),
                     lastName: document.getElementById('lastName').value.trim(),
                     email: document.getElementById('email').value.trim(),
-                    login: document.getElementById('login').value.trim(),
-                    //mobilePhone: document.getElementById('mobilePhone').value.trim(),
+                    secondEmail: document.getElementById('secondEmail').value.trim(),
+                    mobilePhone: document.getElementById('mobilePhone').value.trim(),
+                    streetAddress: document.getElementById('streetAddress').value.trim(),
+                    city: document.getElementById('city').value.trim(),
+                    state: document.getElementById('state').value.trim(),
+                    zipCode: document.getElementById('zipCode').value.trim(),
+                    countryCode: document.getElementById('countryCode').value.trim(),
+                    employeeNumber: document.getElementById('employeeNumber').value.trim(),
+                    costCenter: document.getElementById('costCenter').value.trim(),
+                    organization: document.getElementById('organization').value.trim(),
+                    department: document.getElementById('department').value.trim(),
+                    employeStatus: document.getElementById('employeStatus').value.trim(),
                 }
             };
             
