@@ -191,56 +191,63 @@
         }
 
         async function updateUserData() {
-    const userId = document.getElementById('userId') ? document.getElementById('userId').value.trim() : ''; // Holt userId
-    const login = document.getElementById('login') ? document.getElementById('login').value.trim() : ''; // Holt login
-
-    if (!userId && !login) {
-        alert("Bitte geben Sie eine User-ID oder Login-E-Mail-Adresse ein.");
+    const userId = document.getElementById('id').value.trim(); // Holt die User-ID
+    if (!userId) {
+        alert("Fehlende Benutzer-ID. Es kann kein Update durchgeführt werden.");
         return;
     }
 
-    const encodedLogin = encodeURIComponent(login);
+    // Holt die anderen Benutzerdaten aus dem Formular
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const secondEmail = document.getElementById('secondEmail').value.trim();
+    const mobilePhone = document.getElementById('mobilePhone').value.trim();
+    const streetAddress = document.getElementById('streetAddress').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const zipCode = document.getElementById('zipCode').value.trim();
+    const status = document.getElementById('status').value.trim();
+    const employeeNumber = document.getElementById('employeeNumber').value.trim();
+    const costCenter = document.getElementById('costCenter').value.trim();
+    const department = document.getElementById('department').value.trim();
+    const employeStatus = document.getElementById('employeStatus').value.trim();
 
-    // Funktion, die den Wert eines Elements nur zurückgibt, wenn es existiert
-    function getElementValue(id) {
-        const element = document.getElementById(id);
-        return element ? element.value.trim() : ''; // Gibt einen leeren String zurück, wenn das Element nicht existiert
-    }
-
+    // Erstelle das Benutzerobjekt
     const userData = {
         profile: {
-            firstName: getElementValue('firstName'),
-            lastName: getElementValue('lastName'),
-            email: getElementValue('email'),
-            secondEmail: getElementValue('secondEmail'),
-            mobilePhone: getElementValue('mobilePhone'),
-            streetAddress: getElementValue('streetAddress'),
-            city: getElementValue('city'),
-            state: getElementValue('state'),
-            zipCode: getElementValue('zipCode'),
-            status: getElementValue('status'),
-            employeeNumber: getElementValue('employeeNumber'),
-            costCenter: getElementValue('costCenter'),
-            department: getElementValue('department'),
-            employeStatus: getElementValue('employeStatus'),
+            firstName,
+            lastName,
+            email,
+            secondEmail,
+            mobilePhone,
+            streetAddress,
+            city,
+            state,
+            zipCode,
+            status,
+            employeeNumber,
+            costCenter,
+            department,
+            employeStatus
         }
     };
 
     try {
-        const response = await fetch(`https://demo-green-puma-81717.okta.com/api/v1/users/${userId || encodedLogin}`, {
-            method: 'PUT', // Korrekt von POST auf PUT
+        const response = await fetch(`https://demo-green-puma-81717.okta.com/api/v1/users/${userId}`, {
+            method: 'PUT', // Verwenden von PUT für das Update
             headers: {
-                'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
-                'Accept': 'application/json', // Akzeptiert JSON-Antworten
+                'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh', // Okta API-Token
+                'Content-Type': 'application/json', // Setzt den Content-Type auf JSON
             },
-            body: JSON.stringify(userData) // Senden der Daten als JSON
+            body: JSON.stringify(userData) // Sende die Benutzerdaten als JSON
         });
 
         if (response.ok) {
             alert('Benutzerdaten erfolgreich aktualisiert.');
         } else {
             console.error("Fehler beim Aktualisieren:", response.status, await response.text());
-            alert('Fehler beim Aktualisieren der Benutzerdaten.');
+            alert("Fehler beim Aktualisieren der Benutzerdaten.");
         }
     } catch (error) {
         console.error("Fehler beim Update:", error);
