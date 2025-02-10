@@ -191,57 +191,54 @@
         }
 
         async function updateUserData() {
-            const login = document.getElementById('login').value.trim();
-            if (!login) {
-                alert("Bitte geben Sie eine Login-E-Mail-Adresse ein.");
-                return;
-            }
+    const login = document.getElementById('login').value.trim();
+    if (!login) {
+        alert("Bitte geben Sie eine Login-E-Mail-Adresse ein.");
+        return;
+    }
 
-            const encodedLogin = encodeURIComponent(login);
-
-            const userData = {
-                profile: {
-                    firstName: document.getElementById('firstName').value.trim(),
-                    lastName: document.getElementById('lastName').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    secondEmail: document.getElementById('secondEmail').value.trim(),
-                    mobilePhone: document.getElementById('mobilePhone').value.trim(),
-                    streetAddress: document.getElementById('streetAddress').value.trim(),
-                    city: document.getElementById('city').value.trim(),
-                    state: document.getElementById('state').value.trim(),
-                    zipCode: document.getElementById('zipCode').value.trim(),
-                    status: document.getElementById('status').value.trim(),
-                    employeeNumber: document.getElementById('employeeNumber').value.trim(),
-                    costCenter: document.getElementById('costCenter').value.trim(),
-                    //organization: document.getElementById('organization').value.trim(),
-                    department: document.getElementById('department').value.trim(),
-                    employeStatus: document.getElementById('employeStatus').value.trim(),
-                }
-            };
-
-            try {
-		 const response = await fetch('https://demo-green-puma-81717.okta.com/api/v1/users?activate=true', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-HTTP-Method-Override': 'PUT' // ⬅️ Dies ist wichtig!
-                    },
-                    body: JSON.stringify(userData)
-                });
-
-                if (response.ok) {
-                    alert('Benutzerdaten erfolgreich aktualisiert.');
-                } else {
-                    console.error("Fehler beim Aktualisieren:", response.status, await response.text());
-                    alert('Fehler beim Aktualisieren der Benutzerdaten.');
-                }
-            } catch (error) {
-                console.error("Fehler beim Update:", error);
-                alert("Es gab ein Problem mit der Verbindung.");
-            }
+    const encodedLogin = encodeURIComponent(login);
+    const updatedData = {
+        profile: {
+            firstName: document.getElementById('firstName').value.trim(),
+            lastName: document.getElementById('lastName').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            secondEmail: document.getElementById('secondEmail').value.trim(),
+            mobilePhone: document.getElementById('mobilePhone').value.trim(),
+            streetAddress: document.getElementById('streetAddress').value.trim(),
+            city: document.getElementById('city').value.trim(),
+            state: document.getElementById('state').value.trim(),
+            zipCode: document.getElementById('zipCode').value.trim(),
+            employeeNumber: document.getElementById('employeeNumber').value.trim(),
+            costCenter: document.getElementById('costCenter').value.trim(),
+            department: document.getElementById('department').value.trim(),
+            employeStatus: document.getElementById('employeStatus').value.trim()
         }
+    };
+
+    try {
+        const response = await fetch(`https://demo-green-puma-81717.okta.com/api/v1/users/${encodedLogin}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        });
+
+        if (response.ok) {
+            console.log("Benutzerdaten aktualisiert");
+            alert("Benutzerdaten erfolgreich aktualisiert.");
+        } else {
+            console.error("Fehler beim Aktualisieren:", response.status, await response.text());
+            alert("Fehler beim Aktualisieren der Benutzerdaten. Bitte überprüfen Sie die Eingaben und versuchen Sie es erneut.");
+        }
+    } catch (error) {
+        console.error("Fehler beim Aktualisieren:", error);
+        alert("Es gab ein Problem mit der Verbindung.");
+    }
+}
+
 
 		async function createUser() {
     const userData = {
