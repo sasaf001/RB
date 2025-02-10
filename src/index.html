@@ -82,20 +82,20 @@
     <!-- Formular-Container -->
     <div class="container">
         <form id="userForm">
-            <label for="userId">User ID:</label>
-            <input type="text" id="userId" name="userId" disabled>
+            <label for="Id">User ID:</label>
+            <input type="text" id="id" name="id" disabled>
 
             <label for="login">Login:</label>
             <input type="email" id="login" name="login" required>
 
             <label for="firstName">Vorname:</label>
-            <input type="text" id="firstName" name="firstName">
+            <input type="text" id="firstName" name="firstName" required>
 
             <label for="lastName">Nachname:</label>
-            <input type="text" id="lastName" name="lastName">
+            <input type="text" id="lastName" name="lastName" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
 
             <label for="secondEmail">Zweit-Email:</label>
             <input type="email" id="secondEmail" name="secondEmail">
@@ -123,9 +123,6 @@
 
             <label for="costCenter">Kostenstelle:</label>
             <input type="text" id="costCenter" name="costCenter">
-
-            <label for="organization">Organisation:</label>
-            <input type="text" id="organization" name="organization">
 
             <label for="department">Fachbereich:</label>
             <input type="text" id="department" name="department">
@@ -157,6 +154,7 @@
                     headers: {
                         'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
                         'Content-Type': 'application/json'
+						//'Accept': 'application/json'
                     }
                 });
 
@@ -178,10 +176,9 @@
                         document.getElementById('countryCode').value = userData.profile.countryCode || "";
                         document.getElementById('employeeNumber').value = userData.profile.employeeNumber || "";
                         document.getElementById('costCenter').value = userData.profile.costCenter || "";
-                        document.getElementById('organization').value = userData.profile.organization || "";
                         document.getElementById('department').value = userData.profile.department || "";
                         document.getElementById('employeStatus').value = userData.profile.employeStatus || "";
-			document.getElementById('userId').value = userData.profile.userId || "";
+						document.getElementById('id').value = userData.profile.id || "";
                         //userId = userData.id;
                     
                     }
@@ -218,7 +215,6 @@
                     countryCode: document.getElementById('countryCode').value.trim(),
                     employeeNumber: document.getElementById('employeeNumber').value.trim(),
                     costCenter: document.getElementById('costCenter').value.trim(),
-                    organization: document.getElementById('organization').value.trim(),
                     department: document.getElementById('department').value.trim(),
                     employeStatus: document.getElementById('employeStatus').value.trim(),
                 }
@@ -229,7 +225,7 @@
             method: 'POST', 
             headers: {
                 'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
-                'Content-Type': 'application/json',
+                'Accept': 'application/json'
                 //'X-HTTP-Method-Override': 'PUT' // ⬅️ Dies ist wichtig!
             },
             body: JSON.stringify(userData)
@@ -261,7 +257,6 @@
                     countryCode: document.getElementById('countryCode').value.trim(),
                     employeeNumber: document.getElementById('employeeNumber').value.trim(),
                     costCenter: document.getElementById('costCenter').value.trim(),
-                    organization: document.getElementById('organization').value.trim(),
                     department: document.getElementById('department').value.trim(),
                     employeStatus: document.getElementById('employeStatus').value.trim(),
                 }
@@ -272,7 +267,7 @@
                     method: 'POST',
                     headers: {
                         'Authorization': 'SSWS 00pKU38MmlaAOr-_c7UDha06cUcl0krxY76vLPVtwh',
-                        'Content-Type': 'application/json'			
+                        'Accept': 'application/json'			
                     },
                     body: JSON.stringify(userData)
                 });
