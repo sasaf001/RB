@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerverwaltung</title>
+    <title>HR-Test-App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,28 +12,49 @@
             flex-direction: column;
             align-items: center;
             margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 60%;
+            background: white;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h2 {
+            flex-grow: 1;
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin: 0;
         }
         .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 50%;
+            width: 60%;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
         }
         label {
-            font-weight: bold;
-            display: block;
             margin-top: 10px;
+            font-weight: bold;
         }
         input {
-            width: 100%;
             padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        button {
+        input[type="button"] {
             margin-top: 15px;
             background-color: #28a745;
             color: white;
@@ -41,51 +62,156 @@
             border: none;
             padding: 10px;
             font-size: 16px;
-            width: 100%;
         }
-        button:hover {
+        input[type="button"]:hover {
             background-color: #218838;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <div class="header">
+        <h2>HR-Test-App</h2>
+    </div>
+
+    <!-- Benutzer Login und Aktualisierung -->
     <div class="container">
-        <h2>Benutzerverwaltung</h2>
-        <label for="email">E-Mail:</label>
-        <input type="email" id="email" required>
-        <button onclick="fetchUserData()">Benutzerdaten abrufen</button>
-        <button onclick="updateUserData()">Benutzerdaten aktualisieren</button>
-        <button onclick="createUser()">Benutzer registrieren</button>
+        <h3>Benutzer abrufen & aktualisieren</h3>
+        <form id="userForm">
+            <label for="login">Login (E-Mail):</label>
+            <input type="email" id="login" name="login" required>
+
+            <label for="firstName">Vorname:</label>
+            <input type="text" id="firstName" name="firstName">
+
+            <label for="lastName">Nachname:</label>
+            <input type="text" id="lastName" name="lastName">
+
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email">
+
+            <input type="button" value="Benutzerdaten abrufen" onclick="fetchUserData()">
+            <input type="button" value="Benutzerdaten aktualisieren" onclick="updateUserData()">
+        </form>
+    </div>
+
+    <!-- Benutzerregistrierung -->
+    <div class="container">
+        <h3>Neuen Benutzer registrieren</h3>
+        <form id="registerForm">
+            <label for="regFirstName">Vorname *:</label>
+            <input type="text" id="regFirstName" name="regFirstName" required>
+
+            <label for="regLastName">Nachname *:</label>
+            <input type="text" id="regLastName" name="regLastName" required>
+
+            <label for="regEmail">E-Mail *:</label>
+            <input type="email" id="regEmail" name="regEmail" required>
+
+            <label for="regMobilePhone">Handynummer:</label>
+            <input type="tel" id="regMobilePhone" name="regMobilePhone">
+
+            <label for="regCity">Stadt:</label>
+            <input type="text" id="regCity" name="regCity">
+
+            <input type="button" value="Benutzer registrieren" onclick="createUser()">
+        </form>
     </div>
 
     <script>
         async function fetchUserData() {
-            const email = document.getElementById('email').value;
-            if (!email) {
-                alert("Bitte geben Sie eine E-Mail ein.");
+            const login = document.getElementById('login').value.trim();
+            if (!login) {
+                alert("Bitte geben Sie eine Login-E-Mail-Adresse ein.");
                 return;
             }
-            
+
             try {
-                const response = await fetch(`https://example.com/api/users/${email}`);
+                const response = await fetch(`https://demo-green-puma-81717.okta.com/api/v1/users/${login}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'SSWS YOUR_API_KEY',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
                 if (response.ok) {
-                    const data = await response.json();
-                    alert("Benutzerdaten: " + JSON.stringify(data));
+                    const userData = await response.json();
+                    document.getElementById('firstName').value = userData.profile.firstName || "";
+                    document.getElementById('lastName').value = userData.profile.lastName || "";
+                    document.getElementById('email').value = userData.profile.email || "";
                 } else {
-                    alert("Fehler beim Abrufen der Benutzerdaten");
+                    alert("Fehler beim Abrufen der Benutzerdaten.");
                 }
             } catch (error) {
-                console.error(error);
-                alert("Verbindungsfehler");
+                alert("Verbindungsproblem.");
             }
         }
 
         async function updateUserData() {
-            alert("Benutzerdaten aktualisieren: Noch nicht implementiert");
+            const login = document.getElementById('login').value.trim();
+            if (!login) {
+                alert("Bitte geben Sie eine Login-E-Mail-Adresse ein.");
+                return;
+            }
+
+            const updatedData = {
+                profile: {
+                    firstName: document.getElementById('firstName').value.trim(),
+                    lastName: document.getElementById('lastName').value.trim(),
+                    email: document.getElementById('email').value.trim()
+                }
+            };
+
+            try {
+                const response = await fetch(`https://demo-green-puma-81717.okta.com/api/v1/users/${login}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'SSWS YOUR_API_KEY',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedData)
+                });
+
+                if (response.ok) {
+                    alert("Benutzerdaten erfolgreich aktualisiert.");
+                } else {
+                    alert("Fehler beim Aktualisieren der Benutzerdaten.");
+                }
+            } catch (error) {
+                alert("Verbindungsproblem.");
+            }
         }
 
         async function createUser() {
-            alert("Benutzerregistrierung: Noch nicht implementiert");
+            const userData = {
+                profile: {
+                    firstName: document.getElementById('regFirstName').value.trim(),
+                    lastName: document.getElementById('regLastName').value.trim(),
+                    email: document.getElementById('regEmail').value.trim(),
+                    mobilePhone: document.getElementById('regMobilePhone').value.trim(),
+                    city: document.getElementById('regCity').value.trim()
+                }
+            };
+
+            try {
+                const response = await fetch('https://demo-green-puma-81717.okta.com/api/v1/users?activate=true', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'SSWS YOUR_API_KEY',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    alert("Benutzer erfolgreich erstellt!");
+                } else {
+                    alert("Fehler beim Erstellen des Benutzers.");
+                }
+            } catch (error) {
+                alert("Verbindungsproblem.");
+            }
         }
     </script>
 </body>
