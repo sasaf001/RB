@@ -79,7 +79,33 @@
         <img src="https://myfristsorage.blob.core.windows.net/terraform/Logo%20ZBG.jpg" alt="Company Logo" class="logo">
     </div>
 
-    <!-- Benutzer Login und Aktualisierung -->
+     <!-- Benutzerregistrierung -->
+    <div class="container">
+        <h3>Neuen Benutzer registrieren</h3>
+        <form id="registerForm">
+            <label for="regFirstName">Vorname *:</label>
+            <input type="text" id="regFirstName" name="regFirstName" required>
+
+            <label for="regLastName">Nachname *:</label>
+            <input type="text" id="regLastName" name="regLastName" required>
+
+            <label for="regEmail">E-Mail *:</label>
+            <input type="email" id="regEmail" name="regEmail" required>
+
+	    <label for="regdepartment">Department:</label>
+            <input type="text" id="regdepartment" name="regdepartment">
+
+            <label for="regMobilePhone">Handynummer:</label>
+            <input type="tel" id="regMobilePhone" name="regMobilePhone">
+
+            <label for="regCity">Stadt:</label>
+            <input type="text" id="regCity" name="regCity">
+
+            <input type="button" value="Benutzer registrieren" onclick="createUser()">
+        </form>
+    </div>
+	
+	<!-- Benutzer Login und Aktualisierung -->
     <div class="container">
         <h3>Benutzer abrufen & aktualisieren</h3>
         <form id="userForm">
@@ -137,28 +163,7 @@
         </form>
     </div>
 
-    <!-- Benutzerregistrierung -->
-    <div class="container">
-        <h3>Neuen Benutzer registrieren</h3>
-        <form id="registerForm">
-            <label for="regFirstName">Vorname *:</label>
-            <input type="text" id="regFirstName" name="regFirstName" required>
-
-            <label for="regLastName">Nachname *:</label>
-            <input type="text" id="regLastName" name="regLastName" required>
-
-            <label for="regEmail">E-Mail *:</label>
-            <input type="email" id="regEmail" name="regEmail" required>
-
-            <label for="regMobilePhone">Handynummer:</label>
-            <input type="tel" id="regMobilePhone" name="regMobilePhone">
-
-            <label for="regCity">Stadt:</label>
-            <input type="text" id="regCity" name="regCity">
-
-            <input type="button" value="Benutzer registrieren" onclick="createUser()">
-        </form>
-    </div>
+   
 
     <script>
         async function fetchUserData() {
@@ -266,7 +271,8 @@
                     lastName: document.getElementById('regLastName').value.trim(),
                     email: document.getElementById('regEmail').value.trim(),
                     mobilePhone: document.getElementById('regMobilePhone').value.trim(),
-                    city: document.getElementById('regCity').value.trim()
+                    city: document.getElementById('regCity').value.trim(),
+		    city: document.getElementById('regDepartment').value.trim()
                 }
             };
 
