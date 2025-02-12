@@ -261,6 +261,7 @@
         async function createUser() {
             const userData = {
                 profile: {
+		login: document.getElementById('regEmail').value.trim(),
                     firstName: document.getElementById('regFirstName').value.trim(),
                     lastName: document.getElementById('regLastName').value.trim(),
                     email: document.getElementById('regEmail').value.trim(),
