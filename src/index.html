@@ -92,14 +92,14 @@
             <label for="regEmail">E-Mail *:</label>
             <input type="email" id="regEmail" name="regEmail" required>
 
-	    <label for="regDepartment">Department:</label>
-            <input type="text" id="regDepartment" name="regDepartment">
-
             <label for="regMobilePhone">Handynummer:</label>
             <input type="tel" id="regMobilePhone" name="regMobilePhone">
 
             <label for="regCity">Stadt:</label>
             <input type="text" id="regCity" name="regCity">
+		
+	    <label for="regDepartment">Department:</label>
+            <input type="text" id="regDepartment" name="regDepartment">
 
             <input type="button" value="Benutzer registrieren" onclick="createUser()">
         </form>
@@ -272,7 +272,7 @@
                     email: document.getElementById('regEmail').value.trim(),
                     mobilePhone: document.getElementById('regMobilePhone').value.trim(),
                     city: document.getElementById('regCity').value.trim(),
-		    city: document.getElementById('regDepartment').value.trim()
+		    department: document.getElementById('regDepartment').value.trim()
                 }
             };
 
